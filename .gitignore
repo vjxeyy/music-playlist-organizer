@@ -1,0 +1,14 @@
+# Holds your real MySQL password; copy db_config.example.py to create it
+db_config.py
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Editors / OS
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
