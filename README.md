@@ -1,8 +1,11 @@
 # 🎵 Music / Playlist Organiser
 
-A menu-driven **Python + MySQL** console application for organising a music collection:
-add, view, search, update and delete songs, build playlists, and see each playlist's
-total running time.
+A **Python and MySQL-based database application** designed to efficiently manage songs and
+playlists through a simple, menu-driven interface.
+
+The project demonstrates how **Python can be integrated with a MySQL database** to perform data
+storage, retrieval, updating, and deletion while maintaining relationships between songs and
+playlists.
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?logo=python&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-8.0%2B-4479A1?logo=mysql&logoColor=white)
@@ -11,21 +14,25 @@ total running time.
 📘 **[Project Introduction (PDF)](docs/project-introduction.pdf)**: overview, features and database design, with diagrams<br>
 🖥️ **[Working Output (PDF)](docs/working-output.pdf)**: real captured output of every feature and of the 12 MySQL queries
 
-## Contents
+---
 
-- [Abstract](#abstract)
-- [Features](#features)
-- [Sample output](#sample-output)
-- [How it works](#how-it-works)
-- [Database design](#database-design)
-- [Project structure](#project-structure)
-- [Getting started](#getting-started)
-- [Testing](#testing)
-- [Improvements over the report's code](#improvements-over-the-reports-code)
-- [Known limitations](#known-limitations)
-- [Future scope](#future-scope)
+## 📌 About the Project
 
-## Abstract
+Managing a large collection of songs manually can become difficult, especially when searching
+for tracks, categorising songs, or organising them into playlists.
+
+The **Music / Playlist Organiser** provides a computerised solution for managing a music
+collection. The application uses **Python as the front-end** and **MySQL as the back-end
+database**.
+
+The system allows users to manage song information, create playlists, add songs to playlists,
+and view playlist contents through a straightforward menu-driven interface.
+
+This project also provides practical experience with **database connectivity, SQL queries,
+CRUD operations, foreign keys, and modular programming in Python**.
+
+<details>
+<summary>Read the full abstract from the project report</summary>
 
 The project “Music / Playlist Organiser” is a database application developed
 using Python as the front-end programming language and MySQL as the back-end
@@ -66,179 +73,155 @@ It highlights the importance of database applications in solving real-world
 problems and demonstrates how Python and SQL can be integrated to create
 efficient software solutions.
 
-## Features
+</details>
 
-| # | Menu option | What it does |
-|:-:|---|---|
-| 1 | **Add Song** | Asks for title, artist, album, genre and duration, and warns if the song is already stored |
-| 2 | **View Songs** | Lists every song in a table, with a total count |
-| 3 | **Search Song** | Finds songs whose title, artist or genre contains a keyword |
-| 4 | **Update Song** | Shows the current details; press Enter to keep any value |
-| 5 | **Delete Song** | Asks to confirm, then removes the song and its playlist entries |
-| 6 | **Create Playlist** | Creates a playlist; names must be unique |
-| 7 | **Add Song to Playlist** | Lists the playlists, then links a song to the chosen one |
-| 8 | **View Playlist** | Shows a playlist's songs with the song count and total time |
-| 9 | **Exit** | Ends the program |
+---
 
-The program also:
+## ✨ Features
 
-- **Checks input.** Title and artist are required, text must fit its column, and a duration must look like `3:45`.
-- **Prevents duplicates.** It warns before adding a song twice and refuses duplicate playlist names or the same song twice in a playlist.
-- **Explains problems.** A wrong password, a stopped MySQL server or a missing table produce a message that says what to fix, not a crash.
-- **Sets itself up.** On the first run it offers to create the database with 30 sample songs and 6 playlists.
-- **Keeps SQL safe.** Typed values are passed to MySQL as query parameters (`%s`), so input cannot inject SQL.
+### 🎵 Song Management
+- Add new songs
+- View all songs
+- Search songs by:
+  - Title
+  - Artist
+  - Genre
+- Update song details
+- Delete songs
 
-## Sample output
+### 📂 Playlist Management
+- Create new playlists
+- Add songs to playlists
+- View songs belonging to a specific playlist, with the song count and total time
 
-Captured from a real run; the [Working Output PDF](docs/working-output.pdf) shows every feature.
+### 🗄️ Database Operations
+- Create and manage a MySQL database
+- Perform CRUD operations
+- Execute SQL queries
+- Maintain relationships between database tables
+- Use foreign keys to connect songs and playlists
 
-**Adding a song**
+### 🛡️ Built-in Checks
+- Title and artist are required, text must fit its column, and a duration must look like `3:45`
+- Warns before adding a song that is already stored; refuses duplicate playlist names and the same song twice in a playlist
+- A wrong password, a stopped MySQL server or a missing table give a message that says what to fix, not a crash
+- On the first run, offers to create the database with 30 sample songs and 6 playlists
+- Typed values are sent to MySQL as query parameters, so input cannot inject SQL
 
-```text
-Enter your choice: 1
-Enter Song Title: Is There Someone Else?
-Enter Artist: The Weeknd
-Enter Album: Dawn FM
-Enter Genre: R&B
-Enter Duration (mm:ss): 3:19
+---
 
-✅ Song added successfully! (Song ID: 31)
-```
+## 🛠️ Tech Stack
 
-**Viewing a playlist**
+| Technology | Purpose |
+|---|---|
+| **Python** | Front-end / application logic |
+| **MySQL** | Back-end database |
+| **mysql-connector-python** | Python–MySQL database connectivity |
+| **Tabulate** | Displaying database records in tabular format |
 
-```text
-Enter Playlist ID: 7
+The project uses Python to accept user input and display results, while MySQL is responsible
+for storing, updating, and retrieving the data.
 
-📂 Playlist: Late Night Drive
+---
 
-+------+------------------------+--------------+---------------------------------------+-----------+------------+
-| ID   | Title                  | Artist       | Album                                 | Genre     | Duration   |
-+======+========================+==============+=======================================+===========+============+
-| 3    | Starboy                | The Weeknd   | Starboy                               | Pop       | 3:50       |
-+------+------------------------+--------------+---------------------------------------+-----------+------------+
-| 31   | Is There Someone Else? | The Weeknd   | Dawn FM                               | Synth-pop | 3:19       |
-+------+------------------------+--------------+---------------------------------------+-----------+------------+
-| 32   | Hotel                  | Montell Fish | Her Love Still Haunts Me Like A Ghost | R&B       | 3:17       |
-+------+------------------------+--------------+---------------------------------------+-----------+------------+
-3 song(s), total time 10:26
-```
-
-## How it works
-
-```mermaid
-flowchart LR
-    U["User<br>keyboard and screen"] -- "menu choice, data" --> P["music_organiser.py<br>menu, input checks, tables"]
-    P -- "tables, messages" --> U
-    P -- "SQL + values" --> C["mysql-connector-python"]
-    C -- "rows" --> P
-    C <--> D[("MySQL<br>music_db")]
-    S["setup_database.py"] -. "runs music_db.sql<br>(first run or reset)" .-> D
-```
-
-1. The program shows the menu and the user picks an option, for example *3. Search Song*.
-2. Python reads and checks the input, then builds an SQL query. The typed values are passed separately as parameters.
-3. `mysql.connector` sends the query to the MySQL server, which runs it on `music_db`.
-4. MySQL returns the matching rows. Python formats them as a table with `tabulate`, prints them, and shows the menu again.
-
-Each feature opens a connection, does its work, saves changes with `commit()`, and closes the
-connection, even if something goes wrong part-way.
-
-## Database design
-
-A song can be in many playlists and a playlist holds many songs, so a third table,
-`PlaylistSongs`, links them (a many-to-many relationship).
-
-```mermaid
-erDiagram
-    Songs ||--o{ PlaylistSongs : "appears in"
-    Playlists ||--o{ PlaylistSongs : "contains"
-    Songs {
-        int song_id PK
-        varchar title "NOT NULL"
-        varchar artist "NOT NULL"
-        varchar album
-        varchar genre
-        varchar duration "m:ss"
-    }
-    Playlists {
-        int playlist_id PK
-        varchar playlist_name UK
-    }
-    PlaylistSongs {
-        int playlist_id PK, FK
-        int song_id PK, FK
-    }
-```
-
-| Table | Stores | Keys |
-|---|---|---|
-| `Songs` | One row per song: title, artist, album, genre, duration | `song_id` primary key, auto-numbered |
-| `Playlists` | One row per playlist | `playlist_id` primary key; `playlist_name` unique |
-| `PlaylistSongs` | One row per song-in-playlist link | (`playlist_id`, `song_id`) primary key; both are foreign keys |
-
-Both foreign keys use `ON DELETE CASCADE`: deleting a song also removes its rows from
-`PlaylistSongs`. Without it, MySQL would refuse to delete any song that is in a playlist.
-
-## Project structure
+## 🏗️ Project Architecture
 
 ```text
-music-playlist-organizer/
-├── music_organiser.py       # main program: the menu and all nine features
-├── setup_database.py        # creates or resets music_db from music_db.sql
-├── db_config.example.py     # template for db_config.py (MySQL username and password)
-├── music_db.sql             # the three tables + 30 sample songs and 6 playlists
-├── sample_queries.sql       # 12 example SQL queries on the sample data
-├── requirements.txt         # mysql-connector-python, tabulate
-└── docs/
-    ├── project-introduction.pdf
-    └── working-output.pdf
+             ┌─────────────────────┐
+             │        User         │
+             └──────────┬──────────┘
+                        │
+                        ▼
+             ┌─────────────────────┐
+             │       Python        │
+             │  Menu-Driven App    │
+             └──────────┬──────────┘
+                        │
+              mysql.connector
+                        │
+                        ▼
+             ┌─────────────────────┐
+             │        MySQL        │
+             │      music_db       │
+             └──────────┬──────────┘
+                        │
+          ┌─────────────┼─────────────┐
+          ▼             ▼             ▼
+      ┌────────┐   ┌───────────┐   ┌───────────────┐
+      │ Songs  │   │ Playlists │   │ PlaylistSongs │
+      └────────┘   └───────────┘   └───────────────┘
 ```
 
-## Getting started
+The project follows a **client–server model**: the Python menu-driven program is the client
+(front-end), and the MySQL server is the back-end that stores the data.
 
-### Prerequisites
+---
 
-- **Python** 3.8 or later
-- **MySQL Server** 8.0 or later, installed and running
-  ([download](https://dev.mysql.com/downloads/mysql/))
+## 🗃️ Database Structure
 
-### Installation
+The project uses a database named:
 
-1. **Get the code**
+```text
+music_db
+```
 
-   ```bash
-   git clone https://github.com/vjxeyy/music-playlist-organizer.git
-   cd music-playlist-organizer
-   ```
+### Songs
 
-2. **Install the Python libraries**
+Stores information about individual songs.
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+```text
+Songs
+├── song_id        INT, primary key (auto-numbered)
+├── title          VARCHAR(100), required
+├── artist         VARCHAR(100), required
+├── album          VARCHAR(100)
+├── genre          VARCHAR(50)
+└── duration       VARCHAR(10), e.g. 3:20
+```
 
-3. **Add your MySQL login.** Copy the template, then put your MySQL password in `db_config.py`:
+### Playlists
 
-   ```bash
-   copy db_config.example.py db_config.py     # Windows
-   cp db_config.example.py db_config.py       # macOS / Linux
-   ```
+Stores playlist information.
 
-   `db_config.py` is listed in `.gitignore`, so your password is never committed.
+```text
+Playlists
+├── playlist_id    INT, primary key (auto-numbered)
+└── playlist_name  VARCHAR(100), unique
+```
 
-4. **Run the program**
+### PlaylistSongs
 
-   ```bash
-   python music_organiser.py
-   ```
+Connects songs with playlists and represents the relationship between them.
 
-   On the first run it says the database does not exist yet; answer **y** to create it
-   with the sample data. (You can also create it by running `music_db.sql` in MySQL Workbench.)
+```text
+PlaylistSongs
+├── playlist_id    INT, foreign key → Playlists
+└── song_id        INT, foreign key → Songs
+    (playlist_id, song_id) together form the primary key
+```
 
-### Usage
+A song can be in many playlists and a playlist holds many songs, so `PlaylistSongs` links
+them (a **many-to-many relationship**). Both foreign keys use `ON DELETE CASCADE`, so deleting
+a song also removes it from every playlist.
 
-Choose an option by typing its number:
+---
+
+## 🔄 CRUD Operations
+
+The application demonstrates the four fundamental database operations:
+
+| Operation | Function |
+|---|---|
+| **Create** | Add songs and create playlists |
+| **Read** | View and search songs and playlists |
+| **Update** | Update existing song details |
+| **Delete** | Delete songs |
+
+---
+
+## 📋 Main Menu
+
+The Python application provides the following menu:
 
 ```text
 ====== MUSIC / PLAYLIST ORGANISER ======
@@ -254,28 +237,203 @@ Choose an option by typing its number:
 Enter your choice:
 ```
 
-To restore the original sample data at any time (for example before taking screenshots), run
-`python setup_database.py`. This replaces all songs and playlists.
+---
 
-## Testing
+## ⚙️ Requirements
+
+### Hardware
+
+- Intel Core i3 or higher processor
+- Minimum 4 GB RAM
+- 250 GB HDD or 512 GB SSD
+- Standard keyboard and mouse
+- Monitor with at least 1024 × 768 resolution
+
+### Software
+
+- Windows 10/11, Linux, or macOS
+- Python 3.8 or later
+- MySQL Server 8.0 or later
+- Python libraries: `mysql-connector-python`, `tabulate`
+- VS Code, PyCharm, or IDLE
 
 Tested on Windows 11 with Python 3.14.5, MySQL Server 26.7.0, mysql-connector-python 26.7.0
 and tabulate 0.10.0.
 
-An automated script ran **77 checks, all passing**. They covered every menu option with valid
-input, invalid input, boundary values (such as 100 and 101 characters), SQL injection
-attempts, emoji and accented text, and connection failures. Every check is listed in section 5
-of the [Working Output PDF](docs/working-output.pdf). The test script itself is not part of
-this repository.
+---
 
-## Improvements over the report's code
+## 🚀 Installation & Setup
 
-The program keeps the report's structure (same tables, functions and menu) and fixes these
-problems. The most important: in the report's version, **Delete Song failed with MySQL
-error 1451 for every sample song**, because all 30 are in a playlist.
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/vjxeyy/music-playlist-organizer.git
+cd music-playlist-organizer
+```
+
+### 2. Install Required Python Libraries
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Configure the Database Connection
+
+Copy the template and put your MySQL username and password in the copy:
+
+```bash
+copy db_config.example.py db_config.py     # Windows
+cp db_config.example.py db_config.py       # macOS / Linux
+```
+
+```python
+DB_CONFIG = {
+    "host": "localhost",
+    "user": "root",            # your MySQL username
+    "password": "your_password",
+}
+```
+
+> **Note:** `db_config.py` is listed in `.gitignore`, so your password is never uploaded to GitHub.
+
+### 4. Run the Application
+
+```bash
+python music_organiser.py
+```
+
+On the first run the program says the database does not exist yet. Answer **y** and it
+creates `music_db` with the three tables and the sample data. You can also create it by
+running `music_db.sql` in MySQL Workbench.
+
+### 5. Reset the Sample Data (optional)
+
+```bash
+python setup_database.py
+```
+
+This replaces all songs and playlists with the original sample data.
+
+---
+
+## 📁 Project Structure
+
+```text
+music-playlist-organizer/
+│
+├── README.md
+├── music_organiser.py       # main program: the menu and all nine features
+├── setup_database.py        # creates or resets music_db from music_db.sql
+├── db_config.example.py     # template for db_config.py (MySQL login)
+├── music_db.sql             # the three tables + 30 sample songs and 6 playlists
+├── sample_queries.sql       # 12 example SQL queries on the sample data
+├── requirements.txt         # mysql-connector-python, tabulate
+├── docs/
+│   ├── project-introduction.pdf
+│   └── working-output.pdf
+└── screenshots/
+    ├── main-menu.png
+    ├── songs.png
+    └── playlist.png
+```
+
+---
+
+## 🧪 Example Operations
+
+### Add a Song
+
+```text
+Enter your choice: 1
+Enter Song Title: Is There Someone Else?
+Enter Artist: The Weeknd
+Enter Album: Dawn FM
+Enter Genre: R&B
+Enter Duration (mm:ss): 3:19
+
+✅ Song added successfully! (Song ID: 31)
+```
+
+### View Songs
+
+The application displays stored songs in a structured table containing:
+
+```text
+ID | Title | Artist | Album | Genre | Duration
+```
+
+### View a Playlist
+
+Users choose a playlist by its ID. The program lists the playlists first, then shows that
+playlist's songs with the song count and total time (see the screenshot below).
+
+---
+
+## 🎯 Learning Objectives
+
+This project provides practical experience with:
+
+- Python programming
+- MySQL database management
+- Python–MySQL connectivity
+- SQL query execution
+- CRUD operations
+- Relational database design
+- Foreign keys
+- Many-to-many relationships
+- User input handling
+- Modular programming
+
+The project was designed to demonstrate the practical use of Python together with SQL
+databases in a real-world-style application.
+
+---
+
+## 🔮 Future Improvements
+
+The project can be extended with additional functionality such as:
+
+- User authentication
+- Playlist sharing
+- Graphical user interface (GUI)
+- More advanced playlist management (remove a song from a playlist, rename or delete a playlist)
+- Additional search and filtering functionality
+- Storing duration in seconds, so sorting and comparing work for songs of any length
+
+---
+
+## 📸 Screenshots
+
+Real output from the program (text typed by the user is highlighted in yellow).
+
+### Main Menu
+
+![Main Menu](screenshots/main-menu.png)
+
+### Songs
+
+![Songs](screenshots/songs.png)
+
+### Playlist
+
+![Playlist](screenshots/playlist.png)
+
+---
+
+## ✅ Testing
+
+An automated script ran **77 checks, all passing**, on the setup above. They covered every
+menu option with valid input, invalid input, boundary values, SQL injection attempts, emoji
+and accented text, and connection failures. Every check is listed in section 5 of the
+[Working Output PDF](docs/working-output.pdf). The test script itself is not part of this
+repository.
 
 <details>
-<summary>Show all changes</summary>
+<summary>Improvements over the code in the project report</summary>
+
+The program keeps the report's structure (same tables, functions and menu) and fixes these
+problems. The most important: in the report's version, **Delete Song failed with MySQL error
+1451 for every sample song**, because all 30 are in a playlist.
 
 **Database (`music_db.sql`)**
 - `PlaylistSongs` foreign keys use `ON DELETE CASCADE`, so songs in playlists can be deleted.
@@ -297,33 +455,48 @@ error 1451 for every sample song**, because all 30 are in a playlist.
 - **Delete Song** shows the song and asks for confirmation first.
 - **Add Song to Playlist** and **View Playlist** list the playlists before asking for an ID.
   A wrong ID or a duplicate gives a message; in the report's version it crashed the program.
-- Input is checked: title and artist are required, text must fit its column, and duration
-  must look like `3:45`.
-- **Add Song** warns when the same title and artist are already stored.
-- **Search Song** treats `%` and `_` as ordinary characters; in the report's version,
-  searching `%` listed every song.
+- Input is checked, duplicate songs are warned about, and searching for `%` or `_` no longer
+  matches every song.
 - Yes/no questions accept `y` or `yes`.
-- **View Playlist** also shows the number of songs and the total time.
 
 **Setup (`setup_database.py`)**
 - Refuses to run if `music_db.sql` creates a different database from `DB_NAME` in
   `db_config.py`, instead of silently dropping it.
 - Works even if `music_db.sql` was saved with a UTF-8 byte-order mark.
-- If a table goes missing, the error message says how to rebuild it.
 
 </details>
 
-## Known limitations
+<details>
+<summary>Known limitations</summary>
 
-- `duration` is stored as text (`'3:20'`), as in the report. Sample queries 8, 9 and 11 compare
-  it as text, which works while every song is under 10 minutes (`'10:00'` sorts before `'9:59'`).
+- `duration` is stored as text (`'3:20'`), as in the report. Sample queries 8, 9 and 11
+  compare it as text, which works while every song is under 10 minutes.
 - **Update Song** cannot clear an album or genre back to blank.
 - Searching `dont` does not find *Don’t Start Now*, because that title uses a curly apostrophe.
 
-## Future scope
+</details>
 
-- **User accounts:** log in so each person has their own songs and playlists.
-- **Playlist sharing:** let users share playlists with each other.
-- **Graphical interface:** windows and buttons (for example with Tkinter) instead of a text menu.
-- **More playlist tools:** remove a song from a playlist, and rename or delete a playlist.
-- **Duration in seconds:** store duration as a number so sorting and comparing work for songs of any length.
+---
+
+## 📚 Project Documentation
+
+This project was developed as a practical demonstration of **Python and MySQL database
+integration**, covering database creation, SQL queries, CRUD operations, and playlist
+management.
+
+- 📘 [Project Introduction (PDF)](docs/project-introduction.pdf): overview, objectives, features, how it works and database design, with diagrams
+- 🖥️ [Working Output (PDF)](docs/working-output.pdf): real output of every feature, the 12 MySQL queries and the test results
+
+---
+
+## 👨‍💻 Author
+
+**Vijayvarshan P**
+
+> Music / Playlist Organiser — Python + MySQL Database Project
+
+---
+
+## 📄 License
+
+This project is created for **educational and learning purposes**.
