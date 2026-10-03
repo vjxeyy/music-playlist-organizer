@@ -350,6 +350,11 @@ music-playlist-organizer/
 ├── music_db.sql             # the three tables + 30 sample songs and 6 playlists
 ├── sample_queries.sql       # 12 example SQL queries on the sample data
 ├── requirements.txt         # mysql-connector-python, tabulate
+├── requirements-dev.txt     # adds pytest, for running the tests
+├── pytest.ini               # test settings
+├── tests/                   # automated tests (pytest)
+├── .github/workflows/
+│   └── tests.yml            # runs the tests on every push (GitHub Actions)
 └── docs/
     ├── project-introduction.pdf
     ├── working-output.pdf
@@ -426,11 +431,22 @@ The project can be extended with additional functionality such as:
 
 ## ✅ Testing
 
-An automated script ran **77 checks, all passing**, on the setup above. They covered every
-menu option with valid input, invalid input, boundary values, SQL injection attempts, emoji
-and accented text, and connection failures. Every check is listed in section 5 of the
-[Working Output PDF](docs/working-output.pdf). The test script itself is not part of this
-repository.
+The project has an automated test suite in `tests/`: **147 tests** written with pytest. They
+cover every menu option with valid input, invalid input, boundary values (such as 100 and 101
+characters), SQL injection attempts, emoji and accented text, and connection problems.
+
+**On GitHub:** every push runs the tests automatically with GitHub Actions, on Python 3.8 and
+3.14 against MySQL 8.0 and 26.7. The result shows as a ✅ or ❌ next to each commit.
+
+**On your computer** (with MySQL running):
+
+```bash
+pip install -r requirements-dev.txt
+python -m pytest
+```
+
+The tests use their own database, `music_db_test`, and are blocked from touching your
+`music_db`. If MySQL isn't running, the database tests are skipped and the rest still run.
 
 <details>
 <summary>Improvements over the code in the project report</summary>

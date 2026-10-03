@@ -422,12 +422,16 @@ def main_menu():
 # ---------------------------------------------------
 # Run Program
 # ---------------------------------------------------
-if __name__ == "__main__":
-    # Lets emoji print safely on older Windows consoles and when output is redirected.
-    if hasattr(sys.stdout, "reconfigure"):
-        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+def main():
     try:
         if check_database():
             main_menu()
     except (KeyboardInterrupt, EOFError):
         print("\n\n👋 Exiting program. Goodbye!\n")
+
+
+if __name__ == "__main__":
+    # Lets emoji print safely on older Windows consoles and when output is redirected.
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    main()
