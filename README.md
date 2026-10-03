@@ -157,22 +157,18 @@ The project follows a **client–server model**: the Python menu-driven program 
 
 ### How it works
 
-```mermaid
-flowchart LR
-    U["User<br>keyboard and screen"] -- "menu choice, data" --> P["music_organiser.py<br>menu, input checks, tables"]
-    P -- "tables, messages" --> U
-    P -- "SQL + values" --> C["mysql-connector-python"]
-    C -- "rows" --> P
-    C <--> D[("MySQL<br>music_db")]
-    S["setup_database.py"] -. "runs music_db.sql<br>(first run or reset)" .-> D
-```
+![How it works: the user types a choice, music_organiser.py sends SQL through mysql.connector to MySQL, and the rows come back as a table](docs/images/how-it-works.svg)
 
-1. The program shows the menu and the user picks an option, for example *3. Search Song*.
-2. Python reads and checks the input, then builds an SQL query. The typed values are passed
-   separately as parameters.
-3. `mysql.connector` sends the query to the MySQL server, which runs it on `music_db`.
-4. MySQL returns the matching rows. Python formats them as a table with `tabulate`, prints
-   them, and shows the menu again.
+1. **Choice + data:** the user picks a menu option and types any details, for example a song title.
+2. **SQL + values:** `music_organiser.py` checks the input and builds an SQL query. The typed
+   values are passed separately as parameters.
+3. **Runs query:** `mysql.connector` sends the query to the MySQL server, which runs it on `music_db`.
+4. **Rows:** MySQL sends back the matching rows.
+5. **Table / message:** the program prints the rows as a table with `tabulate` (or a message) and
+   shows the menu again.
+
+The dashed path is setup: on the first run (or when you run `python setup_database.py`), the
+code in `setup_database.py` runs `music_db.sql` to create the tables and sample data.
 
 Each feature opens a connection, does its work, saves changes with `commit()`, and closes the
 connection, even if something goes wrong part-way.
@@ -189,27 +185,7 @@ music_db
 
 ### Entity–Relationship Diagram
 
-```mermaid
-erDiagram
-    Songs ||--o{ PlaylistSongs : "appears in"
-    Playlists ||--o{ PlaylistSongs : "contains"
-    Songs {
-        int song_id PK
-        varchar title "NOT NULL"
-        varchar artist "NOT NULL"
-        varchar album
-        varchar genre
-        varchar duration "m:ss"
-    }
-    Playlists {
-        int playlist_id PK
-        varchar playlist_name UK
-    }
-    PlaylistSongs {
-        int playlist_id PK, FK
-        int song_id PK, FK
-    }
-```
+![Database diagram: Songs and Playlists are linked many-to-many through PlaylistSongs](docs/images/database-diagram.svg)
 
 ### Songs
 
@@ -376,7 +352,10 @@ music-playlist-organizer/
 ├── requirements.txt         # mysql-connector-python, tabulate
 └── docs/
     ├── project-introduction.pdf
-    └── working-output.pdf
+    ├── working-output.pdf
+    └── images/
+        ├── how-it-works.svg
+        └── database-diagram.svg
 ```
 
 ---

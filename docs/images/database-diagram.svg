@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 330" width="1000" height="330" role="img" aria-label="Database diagram: Songs and Playlists are linked many-to-many through PlaylistSongs"><title>music_db database diagram</title><style>
+  .t  { font: 700 15px 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif; fill: #1d1d1f; }
+  .s  { font: 400 12.5px 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif; fill: #5b6270; }
+  .m  { font: 700 14px Consolas, 'SF Mono', Menlo, 'DejaVu Sans Mono', monospace; fill: #1d1d1f; }
+  .mr { font: 400 13.5px Consolas, 'SF Mono', Menlo, 'DejaVu Sans Mono', monospace; fill: #1d1d1f; }
+  .ty { font: 400 12.5px Consolas, 'SF Mono', Menlo, 'DejaVu Sans Mono', monospace; fill: #5b6270; }
+  .w  { font: 700 15px 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif; fill: #fff; }
+  .ws { font: 400 11.5px 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif; fill: #c9d3ee; }
+  .lb { font: 600 12.5px 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif; fill: #1d1d1f; }
+  .n  { font: 700 12px 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif; fill: #fff; }
+  .c  { text-anchor: middle; }
+  .e  { text-anchor: end; }
+</style><rect x="1" y="1" width="998" height="328" rx="14" fill="#ffffff" stroke="#e3e7ef" stroke-width="1.5"/>
+<rect x="30" y="60" width="300" height="238" rx="12" fill="#fff" stroke="#1e3a8a" stroke-width="2"/>
+<path d="M30,72 a12,12 0 0 1 12,-12 h276 a12,12 0 0 1 12,12 v34 h-300 z" fill="#1e3a8a"/>
+<text x="180.0" y="80" class="w c">Songs</text>
+<text x="180.0" y="97" class="ws c">one row per song</text>
+<rect x="42" y="113" width="30" height="18" rx="9" fill="#fde68a"/><text x="57" y="126" class="c" style="font:700 10.5px 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif;fill:#78350f">PK</text>
+<text x="82" y="127" class="mr">song_id</text>
+<text x="318" y="127" class="ty e">INT</text>
+<line x1="31" y1="138" x2="329" y2="138" stroke="#e6eaf3"/>
+<text x="82" y="159" class="mr">title</text>
+<text x="318" y="159" class="ty e">VARCHAR(100)</text>
+<line x1="31" y1="170" x2="329" y2="170" stroke="#e6eaf3"/>
+<text x="82" y="191" class="mr">artist</text>
+<text x="318" y="191" class="ty e">VARCHAR(100)</text>
+<line x1="31" y1="202" x2="329" y2="202" stroke="#e6eaf3"/>
+<text x="82" y="223" class="mr">album</text>
+<text x="318" y="223" class="ty e">VARCHAR(100)</text>
+<line x1="31" y1="234" x2="329" y2="234" stroke="#e6eaf3"/>
+<text x="82" y="255" class="mr">genre</text>
+<text x="318" y="255" class="ty e">VARCHAR(50)</text>
+<line x1="31" y1="266" x2="329" y2="266" stroke="#e6eaf3"/>
+<text x="82" y="287" class="mr">duration</text>
+<text x="318" y="287" class="ty e">VARCHAR(10)</text>
+<rect x="420" y="28" width="220" height="110" rx="12" fill="#fff" stroke="#1e3a8a" stroke-width="2"/>
+<path d="M420,40 a12,12 0 0 1 12,-12 h196 a12,12 0 0 1 12,12 v34 h-220 z" fill="#1e3a8a"/>
+<text x="530.0" y="48" class="w c">PlaylistSongs</text>
+<text x="530.0" y="65" class="ws c">one row per song in a playlist</text>
+<rect x="432" y="81" width="30" height="18" rx="9" fill="#fde68a"/><text x="447" y="94" class="c" style="font:700 10.5px 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif;fill:#78350f">PK</text>
+<rect x="466" y="81" width="30" height="18" rx="9" fill="#dbeafe"/><text x="481" y="94" class="c" style="font:700 10.5px 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif;fill:#1e3a8a">FK</text>
+<text x="506" y="95" class="mr">playlist_id</text>
+<text x="628" y="95" class="ty e">INT</text>
+<line x1="421" y1="106" x2="639" y2="106" stroke="#e6eaf3"/>
+<rect x="432" y="113" width="30" height="18" rx="9" fill="#fde68a"/><text x="447" y="126" class="c" style="font:700 10.5px 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif;fill:#78350f">PK</text>
+<rect x="466" y="113" width="30" height="18" rx="9" fill="#dbeafe"/><text x="481" y="126" class="c" style="font:700 10.5px 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif;fill:#1e3a8a">FK</text>
+<text x="506" y="127" class="mr">song_id</text>
+<text x="628" y="127" class="ty e">INT</text>
+<rect x="705" y="28" width="270" height="110" rx="12" fill="#fff" stroke="#1e3a8a" stroke-width="2"/>
+<path d="M705,40 a12,12 0 0 1 12,-12 h246 a12,12 0 0 1 12,12 v34 h-270 z" fill="#1e3a8a"/>
+<text x="840.0" y="48" class="w c">Playlists</text>
+<text x="840.0" y="65" class="ws c">one row per playlist</text>
+<rect x="717" y="81" width="30" height="18" rx="9" fill="#fde68a"/><text x="732" y="94" class="c" style="font:700 10.5px 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif;fill:#78350f">PK</text>
+<text x="757" y="95" class="mr">playlist_id</text>
+<text x="963" y="95" class="ty e">INT</text>
+<line x1="706" y1="106" x2="974" y2="106" stroke="#e6eaf3"/>
+<rect x="717" y="113" width="30" height="18" rx="9" fill="#e5e7eb"/><text x="732" y="126" class="c" style="font:700 10.5px 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif;fill:#374151">UQ</text>
+<text x="757" y="127" class="mr">playlist_name</text>
+<text x="963" y="127" class="ty e">VARCHAR(100)</text>
+<line x1="330" y1="122" x2="420" y2="122" stroke="#1e3a8a" stroke-width="2"/>
+<line x1="340" y1="114" x2="340" y2="130" stroke="#1e3a8a" stroke-width="2"/>
+<line x1="346" y1="114" x2="346" y2="130" stroke="#1e3a8a" stroke-width="2"/>
+<line x1="406" y1="122" x2="420" y2="113" stroke="#1e3a8a" stroke-width="2"/>
+<line x1="406" y1="122" x2="420" y2="122" stroke="#1e3a8a" stroke-width="2"/>
+<line x1="406" y1="122" x2="420" y2="131" stroke="#1e3a8a" stroke-width="2"/>
+<circle cx="399" cy="122" r="5" fill="#fff" stroke="#1e3a8a" stroke-width="2"/>
+<text x="343" y="109" class="lb c" style="fill:#1e3a8a">1</text>
+<text x="406" y="109" class="lb c" style="fill:#1e3a8a">N</text>
+<line x1="705" y1="90" x2="640" y2="90" stroke="#1e3a8a" stroke-width="2"/>
+<line x1="695" y1="82" x2="695" y2="98" stroke="#1e3a8a" stroke-width="2"/>
+<line x1="689" y1="82" x2="689" y2="98" stroke="#1e3a8a" stroke-width="2"/>
+<line x1="654" y1="90" x2="640" y2="81" stroke="#1e3a8a" stroke-width="2"/>
+<line x1="654" y1="90" x2="640" y2="90" stroke="#1e3a8a" stroke-width="2"/>
+<line x1="654" y1="90" x2="640" y2="99" stroke="#1e3a8a" stroke-width="2"/>
+<circle cx="661" cy="90" r="5" fill="#fff" stroke="#1e3a8a" stroke-width="2"/>
+<text x="692" y="77" class="lb c" style="fill:#1e3a8a">1</text>
+<text x="654" y="77" class="lb c" style="fill:#1e3a8a">N</text>
+<rect x="395" y="160" width="270" height="140" rx="10" fill="#eef2fb" stroke="#c7d2ec"/>
+<text x="530" y="184" class="lb c">Many-to-many link</text>
+<text x="530" y="204" class="s c">A song can be in many playlists,</text>
+<text x="530" y="224" class="s c">and a playlist holds many songs.</text>
+<text x="530" y="244" class="s c">Both links use ON DELETE CASCADE,</text>
+<text x="530" y="264" class="s c">so deleting a song also removes</text>
+<text x="530" y="284" class="s c">it from every playlist.</text>
+<text x="735" y="172" class="lb">Key</text>
+<rect x="735" y="182" width="30" height="18" rx="9" fill="#fde68a"/><text x="750" y="195" class="c" style="font:700 10.5px 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif;fill:#78350f">PK</text><text x="775" y="195" class="s">primary key</text>
+<rect x="735" y="208" width="30" height="18" rx="9" fill="#dbeafe"/><text x="750" y="221" class="c" style="font:700 10.5px 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif;fill:#1e3a8a">FK</text><text x="775" y="221" class="s">foreign key</text>
+<rect x="735" y="234" width="30" height="18" rx="9" fill="#e5e7eb"/><text x="750" y="247" class="c" style="font:700 10.5px 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif;fill:#374151">UQ</text><text x="775" y="247" class="s">unique</text>
+<line x1="735" y1="269" x2="787" y2="269" stroke="#1e3a8a" stroke-width="2"/><line x1="741" y1="262" x2="741" y2="276" stroke="#1e3a8a" stroke-width="2"/><line x1="746" y1="262" x2="746" y2="276" stroke="#1e3a8a" stroke-width="2"/><line x1="775" y1="269" x2="787" y2="262" stroke="#1e3a8a" stroke-width="2"/><line x1="775" y1="269" x2="787" y2="269" stroke="#1e3a8a" stroke-width="2"/><line x1="775" y1="269" x2="787" y2="276" stroke="#1e3a8a" stroke-width="2"/><text x="797" y="273" class="s">one (1) to many (N)</text></svg>

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 380" width="1000" height="380" role="img" aria-label="How it works: the user types a choice, music_organiser.py sends SQL through mysql.connector to MySQL, rows come back and are printed as a table"><title>How the Music / Playlist Organiser works</title><style>
+  .t  { font: 700 15px 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif; fill: #1d1d1f; }
+  .s  { font: 400 12.5px 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif; fill: #5b6270; }
+  .m  { font: 700 14px Consolas, 'SF Mono', Menlo, 'DejaVu Sans Mono', monospace; fill: #1d1d1f; }
+  .mr { font: 400 13.5px Consolas, 'SF Mono', Menlo, 'DejaVu Sans Mono', monospace; fill: #1d1d1f; }
+  .ty { font: 400 12.5px Consolas, 'SF Mono', Menlo, 'DejaVu Sans Mono', monospace; fill: #5b6270; }
+  .w  { font: 700 15px 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif; fill: #fff; }
+  .ws { font: 400 11.5px 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif; fill: #c9d3ee; }
+  .lb { font: 600 12.5px 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif; fill: #1d1d1f; }
+  .n  { font: 700 12px 'Segoe UI', -apple-system, 'Helvetica Neue', Arial, sans-serif; fill: #fff; }
+  .c  { text-anchor: middle; }
+  .e  { text-anchor: end; }
+</style><rect x="1" y="1" width="998" height="378" rx="14" fill="#ffffff" stroke="#e3e7ef" stroke-width="1.5"/>
+<defs>
+  <marker id="an" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#1e3a8a"/></marker>
+  <marker id="at" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker>
+  <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#5b6270"/></marker>
+</defs>
+<rect x="25" y="85" width="130" height="130" rx="12" fill="#eef2fb" stroke="#c7d2ec" stroke-width="1.5"/>
+<circle cx="90" cy="122" r="14" fill="#1e3a8a"/><path d="M66,160 a24,20 0 0 1 48,0 v3 h-48 z" fill="#1e3a8a"/>
+<text x="90" y="187" class="t c">User</text><text x="90" y="205" class="s c">keyboard &amp; screen</text>
+<rect x="265" y="60" width="230" height="180" rx="12" fill="#fff" stroke="#1e3a8a" stroke-width="2"/>
+<path d="M265,72 a12,12 0 0 1 12,-12 h206 a12,12 0 0 1 12,12 v24 h-230 z" fill="#1e3a8a"/>
+<text x="380.0" y="83" class="w c">Python program</text>
+<text x="380" y="124" class="m c">music_organiser.py</text>
+<text x="287" y="156" class="s" style="fill:#1d1d1f">• shows the menu</text>
+<text x="287" y="181" class="s" style="fill:#1d1d1f">• checks what you type</text>
+<text x="287" y="206" class="s" style="fill:#1d1d1f">• prints tables (tabulate)</text>
+<rect x="595" y="85" width="140" height="130" rx="12" fill="#eef2fb" stroke="#c7d2ec" stroke-width="1.5"/>
+<text x="665" y="142" class="m c">mysql.connector</text><text x="665" y="164" class="s c">links Python</text><text x="665" y="181" class="s c">to MySQL</text>
+<path d="M830,80 a72.5,16 0 0 1 145,0 v148 a72.5,16 0 0 1 -145,0 z" fill="#eef2fb" stroke="#1e3a8a" stroke-width="2"/><path d="M830,80 a72.5,16 0 0 0 145,0" fill="none" stroke="#1e3a8a" stroke-width="2"/>
+<text x="902.5" y="126" class="t c">MySQL Server</text><text x="902.5" y="146" class="mr c">music_db</text>
+<text x="902.5" y="176" class="s c">Songs</text>
+<text x="902.5" y="194" class="s c">Playlists</text>
+<text x="902.5" y="212" class="s c">PlaylistSongs</text>
+<line x1="155" y1="128" x2="263" y2="128" stroke="#1e3a8a" stroke-width="2" marker-end="url(#an)"/>
+<circle cx="209.0" cy="128" r="10" fill="#1e3a8a" stroke="#fff" stroke-width="2"/><text x="209.0" y="132" class="n c">1</text>
+<text x="209.0" y="111" class="lb c">choice + data</text>
+<line x1="495" y1="128" x2="593" y2="128" stroke="#1e3a8a" stroke-width="2" marker-end="url(#an)"/>
+<circle cx="544.0" cy="128" r="10" fill="#1e3a8a" stroke="#fff" stroke-width="2"/><text x="544.0" y="132" class="n c">2</text>
+<text x="544.0" y="111" class="lb c">SQL + values</text>
+<line x1="735" y1="128" x2="828" y2="128" stroke="#1e3a8a" stroke-width="2" marker-end="url(#an)"/>
+<circle cx="781.5" cy="128" r="10" fill="#1e3a8a" stroke="#fff" stroke-width="2"/><text x="781.5" y="132" class="n c">3</text>
+<text x="781.5" y="111" class="lb c">runs query</text>
+<line x1="828" y1="182" x2="737" y2="182" stroke="#0f766e" stroke-width="2" marker-end="url(#at)"/>
+<line x1="593" y1="182" x2="497" y2="182" stroke="#0f766e" stroke-width="2" marker-end="url(#at)"/>
+<circle cx="545.0" cy="182" r="10" fill="#0f766e" stroke="#fff" stroke-width="2"/><text x="545.0" y="186" class="n c">4</text>
+<text x="545.0" y="210" class="lb c">rows</text>
+<line x1="263" y1="182" x2="157" y2="182" stroke="#0f766e" stroke-width="2" marker-end="url(#at)"/>
+<circle cx="210.0" cy="182" r="10" fill="#0f766e" stroke="#fff" stroke-width="2"/><text x="210.0" y="186" class="n c">5</text>
+<text x="210.0" y="210" class="lb c">table / message</text>
+<rect x="265" y="285" width="230" height="58" rx="10" fill="#fff" stroke="#5b6270" stroke-width="1.5" stroke-dasharray="6 4"/><text x="380" y="309" class="m c">setup_database.py</text><text x="380" y="328" class="s c">runs music_db.sql</text>
+<path d="M495,314 H902.5 V248" fill="none" stroke="#5b6270" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#ag)"/>
+<text x="680" y="304" class="s c">creates the tables + sample data (first run or reset)</text>
+<line x1="30" y1="268" x2="64" y2="268" stroke="#1e3a8a" stroke-width="2" marker-end="url(#an)"/><text x="74" y="272" class="s">request</text><line x1="30" y1="294" x2="64" y2="294" stroke="#0f766e" stroke-width="2" marker-end="url(#at)"/><text x="74" y="298" class="s">response</text><line x1="30" y1="320" x2="64" y2="320" stroke="#5b6270" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#ag)"/><text x="74" y="324" class="s">setup</text></svg>
