@@ -7,9 +7,7 @@ The project demonstrates how **Python can be integrated with a MySQL database** 
 storage, retrieval, updating, and deletion while maintaining relationships between songs and
 playlists.
 
-![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?logo=python&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-8.0%2B-4479A1?logo=mysql&logoColor=white)
-![Class 12 Computer Science Project](https://img.shields.io/badge/Class%2012-Computer%20Science%20Project-1e3a8a)
+[![Built with Python and MySQL](https://skillicons.dev/icons?i=python,mysql)](#️-tech-stack)
 
 📘 **[Project Introduction (PDF)](docs/project-introduction.pdf)**: overview, features and database design, with diagrams<br>
 🖥️ **[Working Output (PDF)](docs/working-output.pdf)**: real captured output of every feature and of the 12 MySQL queries
