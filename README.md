@@ -3,6 +3,47 @@
 A menu-driven Python + MySQL program for managing songs and playlists
 (Class 12 Computer Science project).
 
+## Abstract
+
+The project “Music / Playlist Organiser” is a database application developed
+using Python as the front-end programming language and MySQL as the back-end
+database. In today’s world, music plays an important role in entertainment
+and relaxation, and people often have a large digital music collection.
+Managing these songs manually becomes difficult, especially when it comes to
+searching for tracks, categorising them, or creating playlists. This project
+addresses that problem by providing an efficient way to organise songs and
+playlists through a computerised system.
+
+The system provides a menu-driven interface that allows the user to:
+
+- Add new songs with details like title, artist, album, genre, and duration.
+- View all songs stored in the database in a tabular format.
+- Search songs by title, artist, or genre.
+- Update song details if changes are needed.
+- Delete songs that are no longer required.
+- Create playlists and add songs to them.
+- View all songs belonging to a specific playlist.
+
+The Python program is used to take input from the user, display outputs, and
+connect to the database using the mysql.connector library. The MySQL database
+is used to store, update, and retrieve records, ensuring structured data
+management. The project demonstrates how to perform CRUD operations (Create,
+Read, Update, Delete), use foreign keys for linking tables (songs and
+playlists), and manage relationships between data.
+
+The objective of this project is not only to build a useful application but
+also to give students practical exposure to the real-life use of Python with
+SQL databases. By implementing this project, students learn about database
+connectivity, SQL query execution, error handling, and modular programming in
+Python. The project also simulates how popular music applications such as
+Spotify, iTunes, or Wynk manage their backend operations.
+
+In conclusion, the Music / Playlist Organiser project combines simplicity with
+functionality, providing an easy-to-use platform to manage a music collection.
+It highlights the importance of database applications in solving real-world
+problems and demonstrates how Python and SQL can be integrated to create
+efficient software solutions.
+
 ## Files
 
 | File | Purpose |
