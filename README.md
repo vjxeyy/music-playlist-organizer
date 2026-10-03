@@ -54,7 +54,11 @@ efficient software solutions.
 | `music_db.sql` | Tables plus sample data (30 songs, 6 playlists) |
 | `sample_queries.sql` | The 12 example queries from the report |
 | `requirements.txt` | Python libraries needed |
+| `docs/project-introduction.pdf` | Overview, objectives, features, how it works, database design |
 | `docs/working-output.pdf` | Real captured output of every feature, the 12 MySQL queries and the test results |
+
+**New here?** Start with [docs/project-introduction.pdf](docs/project-introduction.pdf)
+for an overview with diagrams.
 
 **See it working:** [docs/working-output.pdf](docs/working-output.pdf) shows every menu
 option, the MySQL query results and error handling, captured from real runs.
