@@ -1,5 +1,7 @@
 # 🎵 Music / Playlist Organiser
 
+> 🎓 **My Class 12 Board Computer Science project**, built with Python and MySQL.
+
 A **Python and MySQL-based database application** designed to efficiently manage songs and
 playlists through a simple, menu-driven interface.
 
@@ -495,7 +497,7 @@ management.
 
 **Vijayvarshan P**
 
-> Music / Playlist Organiser — Python + MySQL Database Project
+> Music / Playlist Organiser — Class 12 Board Computer Science Project (Python + MySQL)
 
 ---
 
