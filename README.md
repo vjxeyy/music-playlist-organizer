@@ -1,6 +1,6 @@
 # 🎵 Music / Playlist Organiser
 
-> 🎓 **My Class 12 Board Computer Science project**, built with Python and MySQL. Built with ChatGPT.
+> 🎓 **My Class 12 Board Computer Science project**, built with Python and MySQL using ChatGPT.
 
 A **Python and MySQL-based database application** designed to efficiently manage songs and
 playlists through a simple, menu-driven interface.
