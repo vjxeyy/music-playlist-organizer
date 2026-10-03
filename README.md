@@ -155,6 +155,28 @@ for storing, updating, and retrieving the data.
 The project follows a **client–server model**: the Python menu-driven program is the client
 (front-end), and the MySQL server is the back-end that stores the data.
 
+### How it works
+
+```mermaid
+flowchart LR
+    U["User<br>keyboard and screen"] -- "menu choice, data" --> P["music_organiser.py<br>menu, input checks, tables"]
+    P -- "tables, messages" --> U
+    P -- "SQL + values" --> C["mysql-connector-python"]
+    C -- "rows" --> P
+    C <--> D[("MySQL<br>music_db")]
+    S["setup_database.py"] -. "runs music_db.sql<br>(first run or reset)" .-> D
+```
+
+1. The program shows the menu and the user picks an option, for example *3. Search Song*.
+2. Python reads and checks the input, then builds an SQL query. The typed values are passed
+   separately as parameters.
+3. `mysql.connector` sends the query to the MySQL server, which runs it on `music_db`.
+4. MySQL returns the matching rows. Python formats them as a table with `tabulate`, prints
+   them, and shows the menu again.
+
+Each feature opens a connection, does its work, saves changes with `commit()`, and closes the
+connection, even if something goes wrong part-way.
+
 ---
 
 ## 🗃️ Database Structure
@@ -163,6 +185,30 @@ The project uses a database named:
 
 ```text
 music_db
+```
+
+### Entity–Relationship Diagram
+
+```mermaid
+erDiagram
+    Songs ||--o{ PlaylistSongs : "appears in"
+    Playlists ||--o{ PlaylistSongs : "contains"
+    Songs {
+        int song_id PK
+        varchar title "NOT NULL"
+        varchar artist "NOT NULL"
+        varchar album
+        varchar genre
+        varchar duration "m:ss"
+    }
+    Playlists {
+        int playlist_id PK
+        varchar playlist_name UK
+    }
+    PlaylistSongs {
+        int playlist_id PK, FK
+        int song_id PK, FK
+    }
 ```
 
 ### Songs
