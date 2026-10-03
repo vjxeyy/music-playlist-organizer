@@ -22,8 +22,8 @@ Managing a large collection of songs manually can become difficult, especially w
 for tracks, categorising songs, or organising them into playlists.
 
 The **Music / Playlist Organiser** provides a computerised solution for managing a music
-collection. The application uses **Python as the front-end** and **MySQL as the back-end
-database**.
+collection. **Python** runs the console interface and all the application logic, and
+**MySQL** is the database that stores the songs and playlists.
 
 The system allows users to manage song information, create playlists, add songs to playlists,
 and view playlist contents through a straightforward menu-driven interface.
@@ -114,10 +114,10 @@ efficient software solutions.
 
 | Technology | Purpose |
 |---|---|
-| **Python** | Front-end / application logic |
-| **MySQL** | Back-end database |
-| **mysql-connector-python** | Python–MySQL database connectivity |
-| **Tabulate** | Displaying database records in tabular format |
+| **Python** | Console interface and application logic |
+| **MySQL** | Database (stores songs and playlists) |
+| **mysql-connector-python** | Connects Python to MySQL |
+| **Tabulate** | Displays records as tables |
 
 The project uses Python to accept user input and display results, while MySQL is responsible
 for storing, updating, and retrieving the data.
@@ -152,8 +152,8 @@ for storing, updating, and retrieving the data.
       └────────┘   └───────────┘   └───────────────┘
 ```
 
-The project follows a **client–server model**: the Python menu-driven program is the client
-(front-end), and the MySQL server is the back-end that stores the data.
+The project follows a **client–server model**: the Python console program is the client, and
+the MySQL server stores the data and answers its queries.
 
 ### How it works
 
