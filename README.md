@@ -374,13 +374,9 @@ music-playlist-organizer/
 ├── music_db.sql             # the three tables + 30 sample songs and 6 playlists
 ├── sample_queries.sql       # 12 example SQL queries on the sample data
 ├── requirements.txt         # mysql-connector-python, tabulate
-├── docs/
-│   ├── project-introduction.pdf
-│   └── working-output.pdf
-└── screenshots/
-    ├── main-menu.png
-    ├── songs.png
-    └── playlist.png
+└── docs/
+    ├── project-introduction.pdf
+    └── working-output.pdf
 ```
 
 ---
@@ -411,7 +407,8 @@ ID | Title | Artist | Album | Genre | Duration
 ### View a Playlist
 
 Users choose a playlist by its ID. The program lists the playlists first, then shows that
-playlist's songs with the song count and total time (see the screenshot below).
+playlist's songs with the song count and total time. The
+[Working Output PDF](docs/working-output.pdf) shows the full output of every feature.
 
 ---
 
@@ -445,24 +442,6 @@ The project can be extended with additional functionality such as:
 - More advanced playlist management (remove a song from a playlist, rename or delete a playlist)
 - Additional search and filtering functionality
 - Storing duration in seconds, so sorting and comparing work for songs of any length
-
----
-
-## 📸 Screenshots
-
-Real output from the program (text typed by the user is highlighted in yellow).
-
-### Main Menu
-
-![Main Menu](screenshots/main-menu.png)
-
-### Songs
-
-![Songs](screenshots/songs.png)
-
-### Playlist
-
-![Playlist](screenshots/playlist.png)
 
 ---
 
